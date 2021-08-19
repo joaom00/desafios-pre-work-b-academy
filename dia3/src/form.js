@@ -1,4 +1,4 @@
-const form = document.querySelector('form')
+const form = document.querySelector('[data-form="nome-colors"]')
 const inputName = document.querySelector('[data-input="name"]')
 const colorsWrapper = document.createElement('div')
 const colorSelectElement = createColorSelectElement()
@@ -26,12 +26,8 @@ function deleteSquare(color) {
 }
 
 function renderSquare(colors) {
-  colors.forEach((color) => {
-    if (color.selected) {
-      createSquare(color.value)
-    } else {
-      deleteSquare(color.value)
-    }
+  colors.forEach(({ selected, value }) => {
+    selected ? createSquare(value) : deleteSquare(value)
   })
 }
 
@@ -54,35 +50,17 @@ inputName.addEventListener('input', (event) => {
 
 function createColorSelectElement() {
   const colorSelectElement = document.createElement('select')
-
-  const redOption = document.createElement('option')
-  redOption.value = 'red'
-  redOption.textContent = 'Red'
-
-  const greenOption = document.createElement('option')
-  greenOption.value = 'green'
-  greenOption.textContent = 'Green'
-
-  const blueOption = document.createElement('option')
-  blueOption.value = 'blue'
-  blueOption.textContent = 'Blue'
-
-  const purpleOption = document.createElement('option')
-  purpleOption.value = 'purple'
-  purpleOption.textContent = 'Purple'
-
-  const pinkOption = document.createElement('option')
-  pinkOption.value = 'pink'
-  pinkOption.textContent = 'Rosa'
-
   colorSelectElement.setAttribute('multiple', '')
-  colorSelectElement.append(
-    redOption,
-    greenOption,
-    blueOption,
-    purpleOption,
-    pinkOption
-  )
+
+  const colorsOption = ['Red', 'Green', 'Blue', 'Purple', 'Pink']
+
+  colorsOption.forEach((color) => {
+    const colorOption = document.createElement('option')
+    colorOption.value = color.toLowerCase()
+    colorOption.textContent = color
+    colorSelectElement.appendChild(colorOption)
+  })
+
   form.appendChild(colorSelectElement)
 
   return colorSelectElement

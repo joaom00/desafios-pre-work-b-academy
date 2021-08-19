@@ -7,33 +7,33 @@
     <title>Dia 3</title>
   </head>
   <body>
-    <form class="form-colors">
+    <form class="form-colors" data-form="nome-colors">
       <div>
-      <label for="name">Digite seu nome completo</label>
-      <input data-input="name" type="text" id="name"/>
+        <label for="name">Digite seu nome completo</label>
+        <input data-input="name" type="text" id="name" />
       </div>
     </form>
 
     <form data-form="cars">
       <label for="imageUrl">Imagem(URL)</label>
-      <input required data-input="imageUrl" type="text" id="imageUrl"/>
+      <input required data-input="imageUrl" type="text" id="imageUrl" />
 
       <label for="marca">Marca / Modelo</label>
-      <input required data-input="marca" type="text" id="marca"/>
+      <input required data-input="marca" type="text" id="marca" />
 
       <label for="ano">Ano</label>
-      <input required data-input="ano" type="text" id="ano"/>
+      <input required data-input="ano" type="text" id="ano" />
 
       <label for="placa">Placa</label>
-      <input required data-input="placa" type="text" id="placa"/>
+      <input required data-input="placa" type="text" id="placa" />
 
       <label for="cor">Cor</label>
-      <input required data-input="cor" type="text" id="cor"/>
+      <input required data-input="cor" type="text" id="cor" />
 
       <button type="submit">Enviar</button>
     </form>
 
-    <table >
+    <table>
       <thead>
         <tr>
           <th>Imagem (URL)</th>
@@ -43,8 +43,7 @@
           <th>Cor</th>
         </tr>
       </thead>
-      <tbody data-table="body">
-      </tbody>
+      <tbody data-table="body"></tbody>
     </table>
     <script type="module" src="/src/main.js"></script>
   </body>
