@@ -1,4 +1,4 @@
-const form = document.querySelector('[data-form="nome-colors"]')
+const form = document.querySelector('[data-form="name-colors"]')
 const inputName = document.querySelector('[data-input="name"]')
 const colorsWrapper = document.createElement('div')
 const colorSelectElement = createColorSelectElement()

@@ -7,33 +7,48 @@
     <title>Dia 3</title>
   </head>
   <body>
-    <form class="form-colors" data-form="nome-colors">
+    <form class="form-name-colors" data-form="name-colors">
       <div>
         <label for="name">Digite seu nome completo</label>
         <input data-input="name" type="text" id="name" />
       </div>
     </form>
 
-    <form data-form="cars">
-      <label for="imageUrl">Imagem(URL)</label>
-      <input required data-input="imageUrl" type="text" id="imageUrl" />
+    <form data-form="cars" class="form-cars">
+      <div class="imageUrl-field">
+        <label for="imageUrl">Imagem (URL)</label>
+        <input required data-input="imageUrl" type="url" id="imageUrl" />
+      </div>
 
-      <label for="marca">Marca / Modelo</label>
-      <input required data-input="marca" type="text" id="marca" />
+      <div>
+        <label for="model">Marca / Modelo</label>
+        <input required data-input="model" type="text" id="model" />
+      </div>
 
-      <label for="ano">Ano</label>
-      <input required data-input="ano" type="text" id="ano" />
+      <div>
+        <label for="year">Ano</label>
+        <input required data-input="year" type="text" id="year" />
+      </div>
 
-      <label for="placa">Placa</label>
-      <input required data-input="placa" type="text" id="placa" />
+      <div>
+        <label for="licensePlate">Placa</label>
+        <input
+          required
+          data-input="licensePlate"
+          type="text"
+          id="licensePlate"
+        />
+      </div>
 
-      <label for="cor">Cor</label>
-      <input required data-input="cor" type="text" id="cor" />
+      <div>
+        <label for="color">Cor</label>
+        <input required data-input="color" type="text" id="color" />
+      </div>
 
-      <button type="submit">Enviar</button>
+      <button class="submit-car-btn" type="submit">Enviar</button>
     </form>
 
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th>Imagem (URL)</th>
