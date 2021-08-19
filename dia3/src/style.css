@@ -6,3 +6,17 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.form-colors {
+  max-width: 200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.colors-wrapper {
+  display: flex;
+  margin: 20px auto 0 auto;
+  max-width: 60%;
+}
