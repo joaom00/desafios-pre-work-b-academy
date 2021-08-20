@@ -27,6 +27,33 @@ async function createCar(car) {
   return { error, message }
 }
 
+function noCarFound() {
+  tableBody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center">Nenhum carro encontrado</td>
+      </tr>
+    `
+}
+
+function renderCars(cars) {
+  cars.forEach((car) => {
+    tableBody.innerHTML = renderTable(car)
+  })
+}
+
+function renderTable(car) {
+  return `
+    <tr>
+      <td><img style="display: block; width: 80px;" src="${car.image}" /></td>
+      <td>${car.brandModel}</td>
+      <td>${car.year}</td>
+      <td>${car.plate}</td>
+      <td>${car.color}</td>
+      <td><button class="delete-car-btn">Excluir</button></td>
+    </tr>
+    `
+}
+
 formCars.addEventListener('submit', async (event) => {
   event.preventDefault()
   const { imageUrl, model, year, licensePlate, color } = event.target.elements
@@ -42,50 +69,39 @@ formCars.addEventListener('submit', async (event) => {
   const { error, message } = await createCar(car)
 
   if (!error) {
-    const tr = document.createElement('tr')
-    tableBody.appendChild(tr)
-
-    for (const [key, value] of Object.entries(car)) {
-      const td = document.createElement('td')
-
-      key === 'image'
-        ? (td.innerHTML = `<img style="display: block; width: 80px;" src="${value}" />`)
-        : (td.textContent = value)
-
-      tr.appendChild(td)
-    }
+    tableBody.innerHTML = ''
+    tableBody.innerHTML = renderTable(car)
 
     event.target.reset()
     imageUrl.focus()
+
     notificationSuccess(message)
     return
   }
+
   notificationError(message)
 })
 
-function noCarFound() {
-  const tr = document.createElement('tr')
-  tableBody.appendChild(tr)
-  const td = document.createElement('td')
-  td.setAttribute('colspan', '5')
-  td.textContent = 'Nenhum carro encontrado'
-  td.style.textAlign = 'center'
-  tr.appendChild(td)
-}
+tableBody.addEventListener('click', async (event) => {
+  if (event.target.tagName.toLowerCase() === 'button') {
+    const tableRow = event.target.parentElement.parentElement
+    const plate = tableRow.childNodes[7].textContent
 
-function renderCars(cars) {
-  cars.forEach((car) => {
-    const tr = document.createElement('tr')
-    tableBody.appendChild(tr)
-    for (const [key, value] of Object.entries(car)) {
-      const td = document.createElement('td')
-      key === 'image'
-        ? (td.innerHTML = `<img style="display: block; width: 80px;" src="${value}" />`)
-        : (td.textContent = value)
+    const response = await fetch(apiUrl, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        plate
+      })
+    })
 
-      tr.appendChild(td)
-    }
-  })
-}
+    const { message } = await response.json()
+    notificationSuccess(message)
+    tableRow.outerHTML = ''
+  }
+})
 
+getCars()
 getCars()

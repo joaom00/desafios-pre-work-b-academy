@@ -109,6 +109,20 @@ input:focus {
   border-bottom: 2px solid #ff3366;
 }
 
+.delete-car-btn {
+  padding: 4px 8px;
+  background-color: #ff3366;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.delete-car-btn:hover {
+  filter: brightness(0.90)
+}
+
 @keyframes slideUp {
   from {
     opacity: 0;
